@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Db = process.env.ATLAS_URI || "mongodb://0.0.0.0:27017";
+const Db = process.env.ATLAS_URI || "mongodb://0.0.0.0:27017/IInventory";
 
 mongoose.connect(Db, {
   useNewUrlParser: true,
