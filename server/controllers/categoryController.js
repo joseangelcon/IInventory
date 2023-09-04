@@ -10,6 +10,22 @@ class CategoryController {
     }
   }
 
+  async updateCategory(req, res) {
+    try {
+      const { categoryId } = req.params;
+      const { description } = req.body;
+
+      const updatedCategory = await categoryService.updateCategory(
+        categoryId,
+        description
+      );
+
+      res.status(200).json(updatedCategory);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
   async getAllCategories(req, res) {
     try {
       const categories = await categoryService.getAllCategories();

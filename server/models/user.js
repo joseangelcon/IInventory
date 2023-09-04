@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const { generateCustomId } = require("../constants");
 
 const userSchema = new mongoose.Schema(
   {
-    _id: { type: String, default: shortid.generate },
+    _id: { type: String, default: generateCustomId },
     username: {
       type: String,
       required: true,

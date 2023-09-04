@@ -16,7 +16,6 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongoose": "^7.5.0",
-    "nanoid": "^4.0.2",
-    "shortid": "^2.2.16"
+    "nanoid": "^3.3.4"
   }
 }

@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const shortid = require("shortid");
+const { generateCustomId } = require("../constants");
 
 const equipmentSchema = new mongoose.Schema(
   {
-    _id: { type: String, default: shortid.generate },
+    _id: { type: String, default: generateCustomId },
     name: { type: String, required: true },
     description: String,
     quantity: {
