@@ -1,4 +1,3 @@
-const { generateCustomId } = require("../constants");
 const Category = require("../models/category");
 
 class CategoryService {
@@ -13,14 +12,16 @@ class CategoryService {
 
   async updateCategory(categoryId, newDescription) {
     try {
-      const updatedCategory = await Category.findByIdAndUpdate(
-        categoryId,
+      const updatedCategory = await Category.findOneAndUpdate(
+        { categoryId },
         { description: newDescription },
         { new: true } // Return the updated category
       );
 
       if (!updatedCategory) {
-        throw new Error("Categoría no encontrada.");
+        const error = new Error("Categoría no encontrada.");
+        error.status = 404;
+        throw error;
       }
 
       return updatedCategory;

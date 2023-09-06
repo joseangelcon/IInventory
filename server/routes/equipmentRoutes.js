@@ -1,34 +1,17 @@
 const express = require("express");
-const Equipment = require("../models/equipment"); // Adjust the path as needed
-
 const router = express.Router();
+const equipmentController = require("../controllers/equipmentController");
 
-// GET all equipment
-router.get("/equipment", async (req, res) => {
-  try {
-    const equipment = await Equipment.find();
-    res.json(equipment);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// Get equipment items
+router.get("/equipment", equipmentController.getEquipmentItems);
 
-// POST new equipment
-router.post("/equipment", async (req, res) => {
-  const equipment = new Equipment({
-    name: req.body.name,
-    description: req.body.description,
-    // ... other fields
-  });
+// Create a new equipment item
+router.post("/equipment", equipmentController.createEquipmentItem);
 
-  try {
-    const newEquipment = await equipment.save();
-    res.status(201).json(newEquipment);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-// ... define other routes (PUT, DELETE) as needed
+// Update an equipment item
+router.patch(
+  "/equipment/:equipmentId",
+  equipmentController.updateEquipmentItem
+);
 
 module.exports = router;

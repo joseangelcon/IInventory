@@ -1,16 +1,16 @@
 const categoryService = require("../services/categoryService");
 
 class CategoryController {
-  async createCategory(req, res) {
+  async createCategory(req, res, next) {
     try {
       const category = await categoryService.createCategory(req.body);
       res.status(201).json(category);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(error);
     }
   }
 
-  async updateCategory(req, res) {
+  async updateCategory(req, res, next) {
     try {
       const { categoryId } = req.params;
       const { description } = req.body;
@@ -22,16 +22,16 @@ class CategoryController {
 
       res.status(200).json(updatedCategory);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(error);
     }
   }
 
-  async getAllCategories(req, res) {
+  async getAllCategories(req, res, next) {
     try {
       const categories = await categoryService.getAllCategories();
       res.status(200).json(categories);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      next(error);
     }
   }
 }

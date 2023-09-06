@@ -16,6 +16,12 @@ require("dotenv").config({ path: "./env" });
 
 app.use("/api", equipmentRoutes); // Mount equipment routes under /api
 app.use("/api", categoryRoutes); //
+
+app.use((err, req, res, next) => {
+  const statusCode = err.status || 500; // Default to 500 Internal Server Error
+  res.status(statusCode).json({ error: err.message });
+});
+
 // Start your server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

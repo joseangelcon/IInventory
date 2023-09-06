@@ -3,9 +3,11 @@ const { generateCustomId } = require("../constants");
 
 const categorySchema = new mongoose.Schema(
   {
-    _id: {
+    categoryId: {
       type: String,
       default: generateCustomId,
+      required: true,
+      unique: true,
     },
     name: String,
     description: String,
